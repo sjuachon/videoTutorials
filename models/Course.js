@@ -8,19 +8,20 @@ const courseSchema = schema({
     required: true,
     unique: true,
     minlength: 3,
-    maxlength: 50
+    maxlength: 100
   }, 
   
   description: {
       type: String,
       required: true,
       minlength: 3,
-      maxlength: 50
+      maxlength: 1000
   },
 
   imageUrl: {
       type: String,
-      required: true
+      required: true,
+      maxlength: 1000
       
   },
 
