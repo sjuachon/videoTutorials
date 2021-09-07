@@ -18,14 +18,13 @@ app.use(cookieParser());
 require('./config/express')(app);
 require('./config/routes')(app);
 
-const oneDay = 1000 * 60 * 60 * 24;
 //session middleware
-app.use(sessions({
-  secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
-  saveUninitialized:true,
-  cookie: { maxAge: oneDay },
-  resave: false
-}));
+// app.use(sessions({
+//   secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+//   saveUninitialized:true,
+//   cookie: { maxAge: oneDay },
+//   resave: false
+// }));
 // parsing the incoming data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -45,24 +44,23 @@ app.set('view engine', 'hbs')
 // cookie parser middleware
 app.use(cookieParser());
 
-// setup rendering engine
-// app.engine(
-// 	"hbs",
-// 	exphbs({
-// 		extname: "hbs",
-// 		defaultLayout: "",
-// 		layoutsDir: __dirname + "/views",
-// 	})
-// );
-// app.set('views', __dirname+'/views');
-// app.set('view engine', 'hbs')
-
 // middlewares
 app.use(express.static('static'));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use((req, res)=>{
   res.render('../views/404.hbs')
 })
+
+// Routes Defined
+/* 
+app.use("/", homeRouter);
+app.use("/login", loginRouter);
+app.use("/logout", logoutRouter);
+app.use("/register", registerRouter);
+app.use("/course", courseRouter);
+app.use("/user", userRouter); 
+
+*/
 
 // app.use(cubeRoutes);
 // app.use(accessoryRoutes);
@@ -89,3 +87,12 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log("we're connected!");
 });
+
+// Route Handlebars Templates
+/* var homeRouter = require("./routes/home");
+var loginRouter = require("./routes/login");
+var logoutRouter = require("./routes/logout");
+var registerRouter = require("./routes/register");
+var courseRouter = require("./routes/course");
+var userRouter = require("./routes/user"); */
+
